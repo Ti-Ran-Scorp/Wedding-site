@@ -15,7 +15,7 @@ export default function GuestForm() {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [age, setAge] = useState('');
+  const [song, setSong] = useState('');
   const [attendance, setAttendance] = useState<Attendance>(null);
   const [guestNames, setGuestNames] = useState('');
   const [alcohol, setAlcohol] = useState<string[]>([]);
@@ -64,10 +64,8 @@ export default function GuestForm() {
     const newErrors: Record<string, string> = {};
     if (!firstName.trim()) newErrors.firstName = 'Укажите имя';
     if (!lastName.trim()) newErrors.lastName = 'Укажите фамилию';
-    if (!age.trim()) newErrors.age = 'Укажите возраст';
-    else if (isNaN(Number(age)) || Number(age) < 1 || Number(age) > 120) {
-      newErrors.age = 'Укажите корректный возраст';
-    }
+    if (!song.trim()) newErrors.song = 'Укажите песню';
+    
     if (!attendance) newErrors.attendance = 'Укажите, сможете ли присутствовать';
     return newErrors;
   };
@@ -103,7 +101,7 @@ export default function GuestForm() {
   // Одиночные поля
   addField('entry.507453910', firstName);
   addField('entry.1194910482', lastName);
-  addField('entry.665774327', age);
+  addField('entry.665774327', song);
   addField('entry.1303172971', attendance === 'yes' ? 'С удовольствием приду' : 'К сожалению, не смогу');
   addField('entry.65553590', guestNames);
 
@@ -198,19 +196,17 @@ export default function GuestForm() {
 
             {/* Возраст */}
             <div className="form-field">
-              <label className="block text-[0.95rem] font-display font-bold text-olive mb-1">Возраст</label>
+              <label className="block text-[0.95rem] font-display font-bold text-olive mb-1">Под какую песню вы выйдете танцевать?</label>
               <input
-                type="number"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-                placeholder="Ваш возраст"
-                min={1}
-                max={120}
+                type="text"
+                value={song}
+                onChange={(e) => setSong(e.target.value)}
+                placeholder="Шадэ - By Индия, Xcho, MOT"
                 className={`w-full sm:w-1/2 bg-white border rounded-xl px-4 py-3 font-body text-dark font-light placeholder:text-[#a0a898] focus:outline-none focus:border-olive-light focus:shadow-[0_0_0_3px_rgba(175,194,138,0.2)] transition-all duration-200 ${
-                  errors.age ? 'border-blush' : 'border-[#e0ddd5]'
+                  errors.song ? 'border-blush' : 'border-[#e0ddd5]'
                 }`}
               />
-              {errors.age && <p className="text-blush text-[0.8rem] font-body font-light mt-1">{errors.age}</p>}
+              {errors.song && <p className="text-blush text-[0.8rem] font-body font-light mt-1">{errors.song}</p>}
             </div>
 
             {/* Присутствие */}
