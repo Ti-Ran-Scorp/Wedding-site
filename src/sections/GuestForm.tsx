@@ -196,12 +196,12 @@ export default function GuestForm() {
 
             {/* Возраст */}
             <div className="form-field">
-              <label className="block text-[0.95rem] font-display font-bold text-olive mb-1">Под какую песню вы выйдете танцевать?</label>
+              <label className="block text-[0.95rem] font-display font-bold text-olive mb-1">Под какую песню вы бы точно вышли танцевать?</label>
               <input
                 type="text"
                 value={song}
                 onChange={(e) => setSong(e.target.value)}
-                placeholder="Шадэ - By Индия, Xcho, MOT"
+                placeholder="Ваша любимая песня"
                 className={`w-full sm:w-1/2 bg-white border rounded-xl px-4 py-3 font-body text-dark font-light placeholder:text-[#a0a898] focus:outline-none focus:border-olive-light focus:shadow-[0_0_0_3px_rgba(175,194,138,0.2)] transition-all duration-200 ${
                   errors.song ? 'border-blush' : 'border-[#e0ddd5]'
                 }`}
